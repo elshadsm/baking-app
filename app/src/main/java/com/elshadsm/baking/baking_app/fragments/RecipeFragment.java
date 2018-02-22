@@ -29,7 +29,8 @@ import retrofit2.Response;
 
 public class RecipeFragment extends Fragment {
 
-    @BindView(R.id.recipes_recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.recipes_recycler_view)
+    RecyclerView recyclerView;
 
     public RecipeFragment() {
         // Required empty public constructor
@@ -40,11 +41,15 @@ public class RecipeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_recipe, container, false);
         ButterKnife.bind(this, rootView);
+        appyConfiguration(rootView);
+        return rootView;
+    }
+
+    private void appyConfiguration(View rootView) {
         RecipeAdapter recipesAdapter = new RecipeAdapter((RecipeActivity) getActivity());
         recyclerView.setAdapter(recipesAdapter);
         applyLayoutManager(rootView);
         fetchRecipeData(recipesAdapter);
-        return rootView;
     }
 
     private void applyLayoutManager(View rootView) {

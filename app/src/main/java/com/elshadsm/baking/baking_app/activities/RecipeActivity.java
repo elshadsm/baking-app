@@ -10,9 +10,9 @@ import com.elshadsm.baking.baking_app.models.Recipe;
 
 import java.util.ArrayList;
 
-public class RecipeActivity extends AppCompatActivity implements RecipeAdapter.ListItemClickListener {
+import static com.elshadsm.baking.baking_app.models.Constants.INTENT_EXTRA_NAME_RECIPE_DETAILS;
 
-    static String ALL_RECIPES="ecipes";
+public class RecipeActivity extends AppCompatActivity implements RecipeAdapter.ListItemClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +21,9 @@ public class RecipeActivity extends AppCompatActivity implements RecipeAdapter.L
     }
 
     @Override
-    public void onListItemClick(Recipe clickedItem) {
-//        Bundle selectedRecipeBundle = new Bundle();
-//        ArrayList<Recipe> selectedRecipe = new ArrayList<>();
-//        selectedRecipe.add(selectedItem);
-//        selectedRecipeBundle.putParcelableArrayList(SELECTED_RECIPES,selectedRecipe);
-
-//        final Intent intent = new Intent(this, RecipeDetailActivity.class);
-//        intent.putExtras(selectedRecipeBundle);
-//        startActivity(intent);
+    public void onListItemClick(Recipe selectedRecipe) {
+        Intent intent = new Intent(this, RecipeDetailActivity.class);
+        intent.putExtra(INTENT_EXTRA_NAME_RECIPE_DETAILS, selectedRecipe);
+        startActivity(intent);
     }
 }

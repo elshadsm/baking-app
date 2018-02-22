@@ -4,9 +4,9 @@
     android:id="@+id/card_view_recipe"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/size_l"
-    android:layout_marginRight="@dimen/size_l"
-    android:layout_marginTop="@dimen/size_l"
+    android:layout_marginLeft="@dimen/size"
+    android:layout_marginRight="@dimen/size"
+    android:layout_marginTop="@dimen/size"
     card_view:cardBackgroundColor="@color/card_view_background"
     card_view:cardCornerRadius="@dimen/size_xs">
 

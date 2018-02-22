@@ -1,15 +1,16 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_recipe_frame_layout"
+    android:id="@+id/fragment_recipe_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.elshadsm.baking.baking_app.fragments.RecipeFragment">
+    android:background="@color/fragment_background"
+    tools:context="com.elshadsm.baking.baking_app.fragments.RecipeDetailFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recipes_recycler_view"
+        android:id="@+id/recipe_details_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="8dp" />
+        android:paddingBottom="@dimen/size" />
 
 </FrameLayout>

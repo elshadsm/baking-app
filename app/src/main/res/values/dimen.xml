@@ -5,7 +5,12 @@
     <dimen name="size">8dp</dimen>
     <dimen name="size_s">4dp</dimen>
     <dimen name="size_xs">2dp</dimen>
+    <dimen name="size_xxs">1dp</dimen>
+    <dimen name="size_zero">0dp</dimen>
 
+    <dimen name="single_line_item_height">48dp</dimen>
+
+    <dimen name="content_text_size">16sp</dimen>
     <dimen name="card_view_text_size">24sp</dimen>
     <dimen name="card_view_height">200dp</dimen>
 
