@@ -92,10 +92,11 @@ public class RecipeFragment extends Fragment {
     }
 
     private void restoreViewState() {
-        if (savedInstanceState != null) {
-            Parcelable savedRecyclerLayoutState = savedInstanceState.getParcelable(SAVED_LAYOUT_MANAGER_KEY);
-            recyclerView.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
+        if (savedInstanceState == null) {
+            return;
         }
+        Parcelable savedRecyclerLayoutState = savedInstanceState.getParcelable(SAVED_LAYOUT_MANAGER_KEY);
+        recyclerView.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
     }
 
 }
