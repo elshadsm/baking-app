@@ -9,11 +9,12 @@
     <dimen name="size_zero">0dp</dimen>
 
     <dimen name="single_line_item_height">48dp</dimen>
-
     <dimen name="content_text_size">16sp</dimen>
     <dimen name="card_view_text_size">24sp</dimen>
     <dimen name="card_view_height">200dp</dimen>
-
     <integer name="grid_view_landscape_column_number">3</integer>
     <integer name="grid_view_portrait_column_number">1</integer>
+
+    <dimen name="step_navigation_bar_height">64dp</dimen>
+    <dimen name="exo_player_height">250dp</dimen>
 </resources>

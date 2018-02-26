@@ -7,7 +7,7 @@
     android:layout_marginEnd="@dimen/size"
     android:layout_marginStart="@dimen/size"
     android:layout_marginTop="@dimen/size_xs"
-    card_view:cardBackgroundColor="@color/step_card_view_background"
+    card_view:cardBackgroundColor="@color/veryLightGreen"
     card_view:cardCornerRadius="@dimen/size_xs">
 
     <RelativeLayout

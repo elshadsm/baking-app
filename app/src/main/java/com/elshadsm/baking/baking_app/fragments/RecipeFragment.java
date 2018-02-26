@@ -2,6 +2,7 @@ package com.elshadsm.baking.baking_app.fragments;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -32,6 +33,9 @@ public class RecipeFragment extends Fragment {
     @BindView(R.id.recipes_recycler_view)
     RecyclerView recyclerView;
 
+    private Bundle savedInstanceState;
+    private static final String SAVED_LAYOUT_MANAGER_KEY = "saved_layout_manager";
+
     public RecipeFragment() {
         // Required empty public constructor
     }
@@ -41,14 +45,15 @@ public class RecipeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_recipe, container, false);
         ButterKnife.bind(this, rootView);
+        this.savedInstanceState = savedInstanceState;
         appyConfiguration(rootView);
         return rootView;
     }
 
     private void appyConfiguration(View rootView) {
         RecipeAdapter recipesAdapter = new RecipeAdapter((RecipeActivity) getActivity());
-        recyclerView.setAdapter(recipesAdapter);
         applyLayoutManager(rootView);
+        recyclerView.setAdapter(recipesAdapter);
         fetchRecipeData(recipesAdapter);
     }
 
@@ -70,6 +75,7 @@ public class RecipeFragment extends Fragment {
             public void onResponse(@NonNull Call<ArrayList<Recipe>> call, @NonNull Response<ArrayList<Recipe>> response) {
                 ArrayList<Recipe> recipeList = response.body();
                 recipesAdapter.setRecipeData(recipeList, getContext());
+                restoreViewState();
             }
 
             @Override
@@ -77,6 +83,19 @@ public class RecipeFragment extends Fragment {
                 Log.e("http error: ", throwable.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelable(SAVED_LAYOUT_MANAGER_KEY, recyclerView.getLayoutManager().onSaveInstanceState());
+        super.onSaveInstanceState(outState);
+    }
+
+    private void restoreViewState() {
+        if (savedInstanceState != null) {
+            Parcelable savedRecyclerLayoutState = savedInstanceState.getParcelable(SAVED_LAYOUT_MANAGER_KEY);
+            recyclerView.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
+        }
     }
 
 }

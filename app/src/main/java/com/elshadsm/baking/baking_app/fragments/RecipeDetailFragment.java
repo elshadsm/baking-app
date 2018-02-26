@@ -3,6 +3,8 @@ package com.elshadsm.baking.baking_app.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +26,9 @@ public class RecipeDetailFragment extends Fragment {
     @BindView(R.id.recipe_details_recycler_view)
     RecyclerView recyclerView;
 
+    private Bundle savedInstanceState;
+    private static final String SAVED_LAYOUT_MANAGER_KEY = "saved_layout_manager_detail";
+
     public RecipeDetailFragment() {
         // Required empty public constructor
     }
@@ -33,6 +38,7 @@ public class RecipeDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
         ButterKnife.bind(this, rootView);
+        this.savedInstanceState = savedInstanceState;
         applyConfiguration();
         return rootView;
     }
@@ -44,6 +50,21 @@ public class RecipeDetailFragment extends Fragment {
         RecipeDetailAdapter recipeDetailAdapter = new RecipeDetailAdapter(getContext(), (RecipeDetailActivity) getActivity());
         recyclerView.setAdapter(recipeDetailAdapter);
         recipeDetailAdapter.setRecipeData(recipe);
+        restoreViewState();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelable(SAVED_LAYOUT_MANAGER_KEY, recyclerView.getLayoutManager().onSaveInstanceState());
+        super.onSaveInstanceState(outState);
+    }
+
+    public void restoreViewState() {
+        if (savedInstanceState == null) {
+            return;
+        }
+        Parcelable savedRecyclerLayoutState = savedInstanceState.getParcelable(SAVED_LAYOUT_MANAGER_KEY);
+        recyclerView.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
     }
 
 }

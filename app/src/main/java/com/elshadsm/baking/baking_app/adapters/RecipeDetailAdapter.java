@@ -170,7 +170,10 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         @Override
         public void onClick(View v) {
             int index = getAdapterPosition();
-            listItemClickListener.onListItemClick(index);
+            if (index < 3) {
+                return;
+            }
+            listItemClickListener.onListItemClick(index - 3);
         }
 
     }

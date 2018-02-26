@@ -1,6 +1,6 @@
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/movie_posters_fragment"
+    android:id="@+id/recipe_fragment"
     android:name="com.elshadsm.baking.baking_app.fragments.RecipeFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

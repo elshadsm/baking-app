@@ -31,4 +31,9 @@
         <item name="android:fontFamily">"sans-serif-normal"</item>
     </style>
 
+    <style name="Step.Indicator.Title.SansSerifNormal" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">"sans-serif-normal"</item>
+    </style>
+
 </resources>

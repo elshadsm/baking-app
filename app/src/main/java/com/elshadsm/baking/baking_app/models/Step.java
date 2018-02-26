@@ -3,6 +3,8 @@ package com.elshadsm.baking.baking_app.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Elshad Seyidmammadov on 17.02.2018.
  */
@@ -12,6 +14,7 @@ public class Step implements Parcelable {
     private long id;
     private String shortDescription;
     private String description;
+    @SerializedName("videoURL")
     private String videoUrl;
     private String thumbnailUrl;
 
