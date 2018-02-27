@@ -16,6 +16,7 @@
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -34,6 +35,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.RecipeDetailActivity" />
         </activity>
+
+        <receiver android:name=".widgets.BakingWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/baking_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".widgets.ListRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>
