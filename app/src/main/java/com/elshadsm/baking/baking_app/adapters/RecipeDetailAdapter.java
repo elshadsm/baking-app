@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 
 public class RecipeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Context context;
+    private final Context context;
     private Recipe recipe;
     private int selectedIndex = -1;
 

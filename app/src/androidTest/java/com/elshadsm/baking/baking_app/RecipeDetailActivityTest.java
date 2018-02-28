@@ -3,13 +3,11 @@ package com.elshadsm.baking.baking_app;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.elshadsm.baking.baking_app.activities.RecipeActivity;
-import com.elshadsm.baking.baking_app.activities.RecipeDetailActivity;
 
 import org.junit.After;
 import org.junit.Before;
@@ -33,7 +31,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 public class RecipeDetailActivityTest {
 
     @Rule
-    public ActivityTestRule<RecipeActivity> recipeActivityTestRule = new ActivityTestRule<>(RecipeActivity.class);
+    public final ActivityTestRule<RecipeActivity> recipeActivityTestRule = new ActivityTestRule<>(RecipeActivity.class);
 
     private IdlingResource idlingResource;
 

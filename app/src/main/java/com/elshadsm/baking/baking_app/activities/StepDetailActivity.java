@@ -167,9 +167,9 @@ public class StepDetailActivity extends AppCompatActivity {
 
     private void openStepDetailFragment(boolean fullScreen) {
         Bundle args = new Bundle();
-        args.putParcelable(STEP_DETDETAILS_FRAGMENT_ARGUMENT, stepList.get(activePosition));
-        args.putBoolean(STEP_DETDETAILS_FRAGMENT_FULLSCREEN_ARGUMENT, fullScreen);
-        args.putLong(STEP_DETDETAILS_FRAGMENT_VIDEO_POSITION_ARGUMENT, C.TIME_UNSET);
+        args.putParcelable(STEP_DETAILS_FRAGMENT_ARGUMENT, stepList.get(activePosition));
+        args.putBoolean(STEP_DETAILS_FRAGMENT_FULLSCREEN_ARGUMENT, fullScreen);
+        args.putLong(STEP_DETAILS_FRAGMENT_VIDEO_POSITION_ARGUMENT, C.TIME_UNSET);
         stepDetailFragment = new StepDetailFragment();
         stepDetailFragment.setArguments(args);
         fragmentManager.beginTransaction()

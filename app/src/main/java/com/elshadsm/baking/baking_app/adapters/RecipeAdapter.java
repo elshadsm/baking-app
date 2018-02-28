@@ -14,7 +14,6 @@ import com.elshadsm.baking.baking_app.models.Recipe;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

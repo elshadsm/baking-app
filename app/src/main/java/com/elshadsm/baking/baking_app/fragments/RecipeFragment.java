@@ -1,6 +1,6 @@
 package com.elshadsm.baking.baking_app.fragments;
 
-import android.content.res.Configuration;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -36,7 +36,7 @@ public class RecipeFragment extends Fragment {
 
     private Bundle savedInstanceState;
     private static final String SAVED_LAYOUT_MANAGER_KEY = "saved_layout_manager";
-    SimpleIdlingResource idlingResource;
+    private SimpleIdlingResource idlingResource;
 
     public RecipeFragment() {
         // Required empty public constructor
@@ -48,19 +48,23 @@ public class RecipeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_recipe, container, false);
         ButterKnife.bind(this, rootView);
         this.savedInstanceState = savedInstanceState;
-        appyConfiguration(rootView);
+        applyConfiguration(rootView);
         return rootView;
     }
 
-    private void appyConfiguration(View rootView) {
-        idlingResource = (SimpleIdlingResource) ((RecipeActivity) getActivity()).getIdlingResource();
-        if (idlingResource != null) {
-            idlingResource.setIdleState(false);
-        }
+    private void applyConfiguration(View rootView) {
+        applyIdlingConfiguration();
         RecipeAdapter recipesAdapter = new RecipeAdapter((RecipeActivity) getActivity());
         applyLayoutManager(rootView);
         recyclerView.setAdapter(recipesAdapter);
         fetchRecipeData(recipesAdapter);
+    }
+
+    @SuppressLint("VisibleForTests")
+    private void applyIdlingConfiguration() {
+        RecipeActivity recipeActivity = (RecipeActivity) getActivity();
+        idlingResource = (SimpleIdlingResource) recipeActivity.getIdlingResource();
+        idlingResource.setIdleState(false);
     }
 
     private void applyLayoutManager(View rootView) {

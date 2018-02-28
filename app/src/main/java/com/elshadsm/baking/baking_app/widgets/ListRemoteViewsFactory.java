@@ -16,7 +16,7 @@ import static com.elshadsm.baking.baking_app.models.Constants.WIDGET_EXTRA_NAME_
  * Created by Elshad Seyidmammadov on 27.02.2018.
  */
 
-public class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
+class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     private final Context context;
     private final ArrayList<String> ingredientList;

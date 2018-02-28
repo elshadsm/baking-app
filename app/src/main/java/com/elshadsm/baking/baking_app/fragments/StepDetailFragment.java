@@ -65,8 +65,8 @@ public class StepDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            step = getArguments().getParcelable(STEP_DETDETAILS_FRAGMENT_ARGUMENT);
-            fullScreenMode = getArguments().getBoolean(STEP_DETDETAILS_FRAGMENT_FULLSCREEN_ARGUMENT);
+            step = getArguments().getParcelable(STEP_DETAILS_FRAGMENT_ARGUMENT);
+            fullScreenMode = getArguments().getBoolean(STEP_DETAILS_FRAGMENT_FULLSCREEN_ARGUMENT);
         }
     }
 
@@ -154,7 +154,7 @@ public class StepDetailFragment extends Fragment {
         this.fullScreenMode = fullScreenMode;
     }
 
-    public void releasePlayer() {
+    private void releasePlayer() {
         if (exoPlayer != null) {
             videoLastPosition = exoPlayer.getCurrentPosition();
             videoPlayed = exoPlayer.getPlayWhenReady();

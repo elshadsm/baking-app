@@ -36,7 +36,7 @@ import static org.hamcrest.Matchers.not;
 public class IntentTest {
 
     @Rule
-    public IntentsTestRule<RecipeActivity> intentsTestRule = new IntentsTestRule<>(RecipeActivity.class);
+    public final IntentsTestRule<RecipeActivity> intentsTestRule = new IntentsTestRule<>(RecipeActivity.class);
 
     private IdlingResource idlingResource;
 

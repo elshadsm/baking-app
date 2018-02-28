@@ -9,7 +9,8 @@
     android:orientation="horizontal"
     android:padding="@dimen/size"
     android:tag="sw600"
-    tools:context="com.elshadsm.baking.baking_app.activities.RecipeDetailActivity">
+    tools:context="com.elshadsm.baking.baking_app.activities.RecipeDetailActivity"
+    android:baselineAligned="false">
 
     <FrameLayout
         android:id="@+id/recipe_details_fragment_container"

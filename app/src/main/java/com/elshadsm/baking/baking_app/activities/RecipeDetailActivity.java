@@ -37,9 +37,6 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
         this.savedInstanceState = savedInstanceState;
         fragmentManager = getSupportFragmentManager();
         loadDataFromExtras();
-        if (savedInstanceState != null) {
-            loadDataFromSavedInstance(savedInstanceState);
-        }
     }
 
     private void loadDataFromExtras() {
@@ -52,10 +49,6 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
         recipe = data.getParcelable(Constants.INTENT_EXTRA_NAME_RECIPE_DETAILS);
         updatePageBody(recipe);
         updateActionBar(recipe);
-    }
-
-    private void loadDataFromSavedInstance(Bundle savedInstanceState) {
-
     }
 
     private void updateActionBar(Recipe recipe) {
@@ -76,7 +69,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
         updateStepDetailFragment();
     }
 
-    public void updateStepDetailFragment() {
+    private void updateStepDetailFragment() {
         if (!isLargeScreen()) {
             return;
         }
@@ -103,9 +96,9 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
         Step step = recipe.getSteps().get(index);
         recipeDetailFragment.setSelectionIndex(index);
         Bundle args = new Bundle();
-        args.putParcelable(STEP_DETDETAILS_FRAGMENT_ARGUMENT, step);
-        args.putBoolean(STEP_DETDETAILS_FRAGMENT_FULLSCREEN_ARGUMENT, false);
-        args.putLong(STEP_DETDETAILS_FRAGMENT_VIDEO_POSITION_ARGUMENT, C.TIME_UNSET);
+        args.putParcelable(STEP_DETAILS_FRAGMENT_ARGUMENT, step);
+        args.putBoolean(STEP_DETAILS_FRAGMENT_FULLSCREEN_ARGUMENT, false);
+        args.putLong(STEP_DETAILS_FRAGMENT_VIDEO_POSITION_ARGUMENT, C.TIME_UNSET);
         final StepDetailFragment stepDetailFragment = new StepDetailFragment();
         stepDetailFragment.setArguments(args);
         fragmentManager.beginTransaction()

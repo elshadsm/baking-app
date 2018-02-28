@@ -1,7 +1,5 @@
 package com.elshadsm.baking.baking_app.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -26,7 +24,7 @@ public class RecipeDetailFragment extends Fragment {
     @BindView(R.id.recipe_details_recycler_view)
     RecyclerView recyclerView;
 
-    RecipeDetailAdapter recipeDetailAdapter;
+    private RecipeDetailAdapter recipeDetailAdapter;
     private Bundle savedInstanceState;
     private static final String SAVED_LAYOUT_MANAGER_KEY = "saved_layout_manager_detail";
     private int stepSelectedIndex = -1;
@@ -62,7 +60,7 @@ public class RecipeDetailFragment extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
-    public void restoreViewState() {
+    private void restoreViewState() {
         if (savedInstanceState == null) {
             return;
         }
@@ -70,7 +68,7 @@ public class RecipeDetailFragment extends Fragment {
         recyclerView.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
     }
 
-    public void restoreSelectionIndex() {
+    private void restoreSelectionIndex() {
         if (stepSelectedIndex != -1) {
             recipeDetailAdapter.setSelectionIndex(stepSelectedIndex);
         }
