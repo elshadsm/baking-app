@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.elshadsm.baking.baking_app.R;
 import com.elshadsm.baking.baking_app.activities.RecipeActivity;
 import com.elshadsm.baking.baking_app.adapters.RecipeAdapter;
+import com.elshadsm.baking.baking_app.idling_resource.SimpleIdlingResource;
 import com.elshadsm.baking.baking_app.models.Recipe;
 import com.elshadsm.baking.baking_app.network.APIClient;
 import com.elshadsm.baking.baking_app.network.APIInterface;
@@ -35,6 +36,7 @@ public class RecipeFragment extends Fragment {
 
     private Bundle savedInstanceState;
     private static final String SAVED_LAYOUT_MANAGER_KEY = "saved_layout_manager";
+    SimpleIdlingResource idlingResource;
 
     public RecipeFragment() {
         // Required empty public constructor
@@ -51,6 +53,10 @@ public class RecipeFragment extends Fragment {
     }
 
     private void appyConfiguration(View rootView) {
+        idlingResource = (SimpleIdlingResource) ((RecipeActivity) getActivity()).getIdlingResource();
+        if (idlingResource != null) {
+            idlingResource.setIdleState(false);
+        }
         RecipeAdapter recipesAdapter = new RecipeAdapter((RecipeActivity) getActivity());
         applyLayoutManager(rootView);
         recyclerView.setAdapter(recipesAdapter);
@@ -77,6 +83,9 @@ public class RecipeFragment extends Fragment {
                 ArrayList<Recipe> recipeList = response.body();
                 recipesAdapter.setRecipeData(recipeList, getContext());
                 restoreViewState();
+                if (idlingResource != null) {
+                    idlingResource.setIdleState(true);
+                }
             }
 
             @Override
