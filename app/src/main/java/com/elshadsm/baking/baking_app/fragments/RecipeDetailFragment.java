@@ -26,8 +26,10 @@ public class RecipeDetailFragment extends Fragment {
     @BindView(R.id.recipe_details_recycler_view)
     RecyclerView recyclerView;
 
+    RecipeDetailAdapter recipeDetailAdapter;
     private Bundle savedInstanceState;
     private static final String SAVED_LAYOUT_MANAGER_KEY = "saved_layout_manager_detail";
+    private int stepSelectedIndex = -1;
 
     public RecipeDetailFragment() {
         // Required empty public constructor
@@ -47,10 +49,11 @@ public class RecipeDetailFragment extends Fragment {
         Recipe recipe = getArguments().getParcelable(Constants.RECIPE_DETAILS_FRAGMENT_ARGUMENT);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
-        RecipeDetailAdapter recipeDetailAdapter = new RecipeDetailAdapter(getContext(), (RecipeDetailActivity) getActivity());
+        recipeDetailAdapter = new RecipeDetailAdapter(getContext(), (RecipeDetailActivity) getActivity());
         recyclerView.setAdapter(recipeDetailAdapter);
         recipeDetailAdapter.setRecipeData(recipe);
         restoreViewState();
+        restoreSelectionIndex();
     }
 
     @Override
@@ -65,6 +68,19 @@ public class RecipeDetailFragment extends Fragment {
         }
         Parcelable savedRecyclerLayoutState = savedInstanceState.getParcelable(SAVED_LAYOUT_MANAGER_KEY);
         recyclerView.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
+    }
+
+    public void restoreSelectionIndex() {
+        if (stepSelectedIndex != -1) {
+            recipeDetailAdapter.setSelectionIndex(stepSelectedIndex);
+        }
+    }
+
+    public void setSelectionIndex(int index) {
+        stepSelectedIndex = index;
+        if (recipeDetailAdapter != null) {
+            recipeDetailAdapter.setSelectionIndex(index);
+        }
     }
 
 }

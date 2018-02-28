@@ -3,7 +3,7 @@
     android:id="@+id/fragment_recipe_frame_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:tag="phone-land"
+    android:tag="sw-600"
     tools:context="com.elshadsm.baking.baking_app.fragments.RecipeFragment">
 
     <android.support.v7.widget.RecyclerView

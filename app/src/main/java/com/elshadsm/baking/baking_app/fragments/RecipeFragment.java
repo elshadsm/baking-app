@@ -58,8 +58,9 @@ public class RecipeFragment extends Fragment {
     }
 
     private void applyLayoutManager(View rootView) {
-        if (rootView.getTag() != null && rootView.getTag().equals("phone-land")) {
-            GridLayoutManager mLayoutManager = new GridLayoutManager(getContext(), R.integer.grid_view_landscape_column_number);
+        if (rootView.getTag() != null && rootView.getTag().equals("sw-600")) {
+            GridLayoutManager mLayoutManager = new GridLayoutManager(getContext(),
+                    getResources().getInteger(R.integer.grid_view_landscape_column_number));
             recyclerView.setLayoutManager(mLayoutManager);
         } else {
             LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());

@@ -1,6 +1,7 @@
 package com.elshadsm.baking.baking_app.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private Context context;
     private Recipe recipe;
+    private int selectedIndex = -1;
 
     final private ListItemClickListener listItemClickListener;
 
@@ -42,6 +44,11 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public void setRecipeData(Recipe recipe) {
         this.recipe = recipe;
+        notifyDataSetChanged();
+    }
+
+    public void setSelectionIndex(int index) {
+        this.selectedIndex = index;
         notifyDataSetChanged();
     }
 
@@ -103,9 +110,12 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             case INGREDIENT_TYPE:
                 break;
             case STEP_TYPE:
+                int index = position - 3;
                 StepViewHolder stepViewHolder = (StepViewHolder) holder;
-                Step step = recipe.getSteps().get(position - 3);
+                Step step = recipe.getSteps().get(index);
                 stepViewHolder.textView.setText(step.getShortDescription());
+                int color = selectedIndex == index ? R.color.lightTeal : R.color.veryLightGreen;
+                stepViewHolder.cardView.setBackgroundColor(context.getResources().getColor(color));
                 break;
         }
     }
@@ -160,6 +170,9 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         @BindView(R.id.short_description)
         TextView textView;
+
+        @BindView(R.id.card_view_step)
+        CardView cardView;
 
         private StepViewHolder(View itemView) {
             super(itemView);

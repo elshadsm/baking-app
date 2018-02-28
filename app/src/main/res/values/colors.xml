@@ -12,6 +12,7 @@
     <color name="lightTeal">#52c7b8</color>
 
     <color name="primary_text_color">#424242</color>
+    <color name="activity_background">#F5F5F5</color>
     <color name="fragment_background">#F5F5F5</color>
     <color name="default_composite_background">#F5F5F5</color>
 
