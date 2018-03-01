@@ -14,7 +14,7 @@
 
     <dimen name="step_navigation_bar_height">64dp</dimen>
     <dimen name="exo_player_height">250dp</dimen>
-    <dimen name="widget_height">144dp</dimen>
-    <dimen name="widget_width">208dp</dimen>
+    <dimen name="widget_height">288dp</dimen>
+    <dimen name="widget_width">272dp</dimen>
     <dimen name="widget_title_height">50dp</dimen>
 </resources>
