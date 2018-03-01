@@ -97,7 +97,7 @@ public class StepDetailFragment extends Fragment {
         }
         if (step != null && !TextUtils.isEmpty(step.getVideoUrl())) {
             playerView.setVisibility(View.VISIBLE);
-            initializePlayer(getContext(), Uri.parse(step.getVideoUrl()));
+            initializePlayer();
         }
     }
 
@@ -110,27 +110,49 @@ public class StepDetailFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if (Util.SDK_INT > 23) {
+            initializePlayer();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (Util.SDK_INT <= 23 || exoPlayer == null) {
+            initializePlayer();
+        }
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
-        releasePlayer();
+        if (Util.SDK_INT <= 23) {
+            releasePlayer();
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        releasePlayer();
+        if (Util.SDK_INT > 23) {
+            releasePlayer();
+        }
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onDestroy() {
+        super.onDestroy();
         releasePlayer();
     }
 
-    private void initializePlayer(Context context, Uri mediaUri) {
-        if (exoPlayer != null) {
+    private void initializePlayer() {
+        if (exoPlayer != null || step == null) {
             return;
         }
+        Uri mediaUri = Uri.parse(step.getVideoUrl());
+        Context context = getContext();
         BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
         TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
