@@ -25,18 +25,21 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
     private Recipe recipe;
     private FragmentManager fragmentManager;
     private RecipeDetailFragment recipeDetailFragment;
-    private Bundle savedInstanceState;
 
     private static final String SAVED_STEP_SELECTED_INDEX_KEY = "saved_step_selected_index";
+    private static final String SAVED_RECIPE_KEY = "saved_recipe";
     private int stepSelectedIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
-        this.savedInstanceState = savedInstanceState;
         fragmentManager = getSupportFragmentManager();
-        loadDataFromExtras();
+        if (savedInstanceState == null) {
+            loadDataFromExtras();
+            return;
+        }
+        loadFromSavedInstanceState(savedInstanceState);
     }
 
     private void loadDataFromExtras() {
@@ -47,18 +50,29 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
         Bundle data = intent.getExtras();
         assert data != null;
         recipe = data.getParcelable(Constants.INTENT_EXTRA_NAME_RECIPE_DETAILS);
-        updatePageBody(recipe);
-        updateActionBar(recipe);
+        updateActionBar();
+        openRecipeDetailFragment();
+        if (isLargeScreen()) {
+            openStepDetailFragment(stepSelectedIndex);
+        }
     }
 
-    private void updateActionBar(Recipe recipe) {
+    private void loadFromSavedInstanceState(Bundle savedInstanceState) {
+        recipe = savedInstanceState.getParcelable(SAVED_RECIPE_KEY);
+        recipeDetailFragment = (RecipeDetailFragment) fragmentManager.
+                findFragmentById(R.id.recipe_details_fragment_container);
+        stepSelectedIndex = savedInstanceState.getInt(SAVED_STEP_SELECTED_INDEX_KEY, 0);
+        recipeDetailFragment.setSelectionIndex(stepSelectedIndex);
+    }
+
+    private void updateActionBar() {
         assert recipe != null;
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle(recipe.getName());
     }
 
-    private void updatePageBody(Recipe recipe) {
+    private void openRecipeDetailFragment() {
         Bundle bundle = new Bundle();
         bundle.putParcelable(Constants.RECIPE_DETAILS_FRAGMENT_ARGUMENT, recipe);
         recipeDetailFragment = new RecipeDetailFragment();
@@ -66,17 +80,6 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
         fragmentManager.beginTransaction()
                 .replace(R.id.recipe_details_fragment_container, recipeDetailFragment)
                 .commit();
-        updateStepDetailFragment();
-    }
-
-    private void updateStepDetailFragment() {
-        if (!isLargeScreen()) {
-            return;
-        }
-        if (savedInstanceState != null) {
-            stepSelectedIndex = savedInstanceState.getInt(SAVED_STEP_SELECTED_INDEX_KEY, 0);
-        }
-        openStepDetailFragment(stepSelectedIndex);
     }
 
     @Override
@@ -113,6 +116,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelable(SAVED_RECIPE_KEY, recipe);
         outState.putInt(SAVED_STEP_SELECTED_INDEX_KEY, stepSelectedIndex);
         super.onSaveInstanceState(outState);
     }
