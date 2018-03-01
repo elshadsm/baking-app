@@ -2,9 +2,9 @@
 
 The Android Baking App allows Udacity’s resident baker-in-chief, Miriam, to share her recipes with the world.
 
-##General App Usage
+## General App Usage
 
-#####The Application:
+##### The Application:
 * Displays recipes from provided network resource.
 * Allows navigation between individual recipes and recipe steps.
 * Uuses RecyclerView and can handle recipe steps that include videos or images.
@@ -20,17 +20,17 @@ The Android Baking App allows Udacity’s resident baker-in-chief, Miriam, to sh
 ## Screens
 #### Phone
 <p style="text-align:center">
-<img src="https://user-images.githubusercontent.com/13982125/36837378-abf8cc32-1d55-11e8-929f-a84a15b8ec75.png" style="width:200;height:408"/>
-<img src="https://user-images.githubusercontent.com/13982125/36837396-b9cbe2b8-1d55-11e8-8a05-4da5db71d2e8.png" style="width:200;height:408"/>
-<img src="https://user-images.githubusercontent.com/13982125/36837414-c4504512-1d55-11e8-972a-68f45a57eab5.png" style="width:200;height:408"/>
-<img src="https://user-images.githubusercontent.com/13982125/36837429-cfe052e6-1d55-11e8-803d-d2a1d7d9ef0f.png" style="width:200;height:408"/>
-<img src="https://user-images.githubusercontent.com/13982125/36837444-daa64604-1d55-11e8-9137-a67650242c8a.png" style="width:200;height:408"/>
+<img src="https://user-images.githubusercontent.com/13982125/36837378-abf8cc32-1d55-11e8-929f-a84a15b8ec75.png"  width="206" height="417">
+<img src="https://user-images.githubusercontent.com/13982125/36837396-b9cbe2b8-1d55-11e8-8a05-4da5db71d2e8.png" width="206" height="417">
+<img src="https://user-images.githubusercontent.com/13982125/36837414-c4504512-1d55-11e8-972a-68f45a57eab5.png" width="206" height="417">
+<img src="https://user-images.githubusercontent.com/13982125/36837444-daa64604-1d55-11e8-9137-a67650242c8a.png" width="206" height="417">
+<img src="https://user-images.githubusercontent.com/13982125/36837429-cfe052e6-1d55-11e8-803d-d2a1d7d9ef0f.png" width="417" height="206">
 </p>
 
 #### Tablet
 <p style="text-align:center">
-<img src="https://user-images.githubusercontent.com/13982125/36837468-e713dbc2-1d55-11e8-9e9b-6fcdf092837e.png" style="width:500;height:370"/>
-<img src="https://user-images.githubusercontent.com/13982125/36837476-ef92487e-1d55-11e8-9247-f69fb1193f94.png" style="width:500;height:370"/>
+<img src="https://user-images.githubusercontent.com/13982125/36837468-e713dbc2-1d55-11e8-9e9b-6fcdf092837e.png" width="500" height="370">
+<img src="https://user-images.githubusercontent.com/13982125/36837476-ef92487e-1d55-11e8-9247-f69fb1193f94.png" width="500" height="370">
 </p>
 
 ## Author
